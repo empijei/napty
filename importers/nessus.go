@@ -72,6 +72,9 @@ type ReportItem struct {
 	CVSSVector                 string   `xml:"cvss_vector,name"`
 	CVSSBaseScore              float64  `xml:"cvss_base_score,name"`
 	CVSSTemporalScore          string   `xml:"cvss_temporal_score,name"`
+	CVSS3Vector                string   `xml:"cvss3_vector,name,omitempty"`
+	CVSS3BaseScore             float64  `xml:"cvss3_base_score,name,omitempty"`
+	CVSS3TemporalScore         string   `xml:"cvss3_temporal_score,name,omitempty"`
 	ComplianceResult           string   `xml:"cm:compliance-result,name"`
 	ComplianceActualValue      string   `xml:"cm:compliance-actual-value,name"`
 	ComplianceCheckID          string   `xml:"cm:compliance-check-id,name"`
