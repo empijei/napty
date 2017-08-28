@@ -11,15 +11,15 @@ import (
 )
 
 type Row struct {
-	IPAddress, NetBIOSName, FQDN, Severity, RiskFactor, ID, Port, Protocol, Service, Vulnerability, Plugin, CVE, CVSS_base, CVSS_vector string
+	IPAddress, NetBIOSName, FQDN, Severity, RiskFactor, ID, Port, Protocol, Service, Vulnerability, Plugin, CVE, CVSS_base, CVSS_vector, PatchDate string
 }
 
 func GetHeader() []string {
-	return []string{"IP Address", "NetBIOS Name", "FQDN", "Severity", "Risk Factor", "ID", "Port", "Protocol", "Service", "Vulnerability", "Plugin", "CVE", "CVSS_base", "CVSS_vector"}
+	return []string{"IP Address", "NetBIOS Name", "FQDN", "Severity", "Risk Factor", "ID", "Port", "Protocol", "Service", "Vulnerability", "Plugin", "CVE", "CVSS_base", "CVSS_vector", "Patch Date"}
 }
 
 func (r *Row) GetCsv() []string {
-	return []string{r.IPAddress, r.NetBIOSName, r.FQDN, r.Severity, r.RiskFactor, r.ID, r.Port, r.Protocol, r.Service, r.Vulnerability, r.Plugin, r.CVE, r.CVSS_base, r.CVSS_vector}
+	return []string{r.IPAddress, r.NetBIOSName, r.FQDN, r.Severity, r.RiskFactor, r.ID, r.Port, r.Protocol, r.Service, r.Vulnerability, r.Plugin, r.CVE, r.CVSS_base, r.CVSS_vector, r.PatchDate}
 }
 
 func convert(in io.Reader, out io.Writer) (err error) {
@@ -54,9 +54,7 @@ func convert(in io.Reader, out io.Writer) (err error) {
 				row.Protocol = reportitem.Protocol
 				row.Severity = fmt.Sprintf("%d", reportitem.Severity)
 				row.Port = fmt.Sprintf("%d", reportitem.Port)
-
-				//TODO patchdate
-				//	  	patch_date    = item.xpath('patch_publication_date').text
+				row.PatchDate = reportitem.PatchPublicationDate
 
 				switch {
 				case reportitem.CVSS3BaseScore != 0:

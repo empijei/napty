@@ -58,6 +58,7 @@ type ReportItem struct {
 	CVE                        []string `xml:"cve,name"`
 	BID                        []string `xml:"bid,name"`
 	XREF                       []string `xml:"xref,name"`
+	PatchPublicationDate       string   `xml:"patch_publication_date,name"`
 	PluginModificationDate     string   `xml:"plugin_modification_date,name"`
 	PluginPublicationDate      string   `xml:"plugin_publication_date,name"`
 	VulnPublicationDate        string   `xml:"vuln_publication_date,name"`
